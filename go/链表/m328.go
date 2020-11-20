@@ -1,0 +1,24 @@
+package 链表
+
+/**
+*@Author icepan
+*@Date 2020/11/19 下午8:18
+*@Describe
+**/
+
+func oddEvenList(head *ListNode) *ListNode {
+	if head == nil {
+		return nil
+	}
+	odd := head
+	even := head.Next
+	evenHead := even
+	for even != nil && even.Next != nil {
+		odd.Next = even.Next
+		odd = odd.Next
+		even.Next = odd.Next
+		even = even.Next
+	}
+	odd.Next = evenHead
+	return head
+}
