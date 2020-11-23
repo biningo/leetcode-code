@@ -8,6 +8,8 @@ package 二分
 func isBadVersion(v int) bool {
 	return true
 }
+
+//二分
 func firstBadVersion(n int) int {
 	low, high := 1, n
 	mid := 0
@@ -20,6 +22,23 @@ func firstBadVersion(n int) int {
 				return mid
 			}
 			high = mid - 1
+		}
+	}
+	return -1
+}
+
+//2
+func firstBadVersion(n int) int {
+	left, right := 1, n
+	for left <= right {
+		mid := (left + right) / 2
+		if isBadVersion(mid) == true {
+			for isBadVersion(mid) == true {
+				mid--
+			}
+			return mid + 1
+		} else {
+			left = mid + 1
 		}
 	}
 	return -1
