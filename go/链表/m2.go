@@ -34,3 +34,26 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	}
 	return head
 }
+
+//方法二
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	d := 0
+	p := &ListNode{0, nil}
+	h := p
+	for l1 != nil || l2 != nil || d > 0 {
+		n1, n2 := 0, 0
+		if l1 != nil {
+			n1 = l1.Val
+			l1 = l1.Next
+		}
+		if l2 != nil {
+			n2 = l2.Val
+			l2 = l2.Next
+		}
+		s := (n1 + n2 + d)
+		p.Next = &ListNode{s % 10, nil}
+		p = p.Next
+		d = s / 10
+	}
+	return h.Next
+}
